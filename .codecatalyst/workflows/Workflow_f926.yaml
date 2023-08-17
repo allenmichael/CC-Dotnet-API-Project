@@ -30,6 +30,9 @@ Actions:
         - Run: dotnet list package --vulnerable --include-transitive | tee vulnerable.txt && sh -c "! grep 'has the following vulnerable packages' vulnerable.txt" || exit 1
     Compute:
       Type: EC2
+    Container:
+        Registry: DockerHub
+        Image: mcr.microsoft.com/dotnet/sdk:7.0
     Environment:
       Connections:
         - Role: CodeCatalystWorkflowDevelopmentRole-amsg-space
