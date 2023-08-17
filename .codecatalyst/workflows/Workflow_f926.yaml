@@ -26,6 +26,7 @@ Actions:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
         - Run: echo "Hello, World!"
+        - Run: dotnet restore
         - Run: dotnet list package --vulnerable --include-transitive | tee vulnerable.txt && sh -c "! grep 'has the following vulnerable packages' vulnerable.txt" || exit 1
     Compute:
       Type: EC2
