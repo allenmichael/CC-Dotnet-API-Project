@@ -26,10 +26,7 @@ Actions:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
         - Run: echo "Hello, World!"
-        - Run: echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" >> report.xml
-        - Run: echo "<testsuite tests=\"1\" name=\"TestAgentJunit\" >" >> report.xml
-        - Run: echo "<testcase classname=\"TestAgentJunit\" name=\"Dummy
-            Test\"/></testsuite>" >> report.xml
+        - Run: dotnet list package --vulnerable --include-transitive | tee vulnerable.txt && sh -c "! grep 'has the following vulnerable packages' vulnerable.txt" || exit 1
     Compute:
       Type: EC2
     Environment:
